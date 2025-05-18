@@ -27,9 +27,10 @@ const Leaderboard = () => {
           // Cuisine
           const cuisine = row["Which cuisine do you prefer the most?"];
           if (cuisine === "Vietnamese") score += 10;
-          else if (cuisine === "Japanese") score += 8;
-          else if (["Italian", "Middle Eastern"].includes(cuisine)) score += 6;
-          else score += 4;
+          else if (cuisine === "Japanese") score += 9;
+          else if (cuisine === "Mexican") score += 8;
+          else if (["Italian", "Middle Eastern"].includes(cuisine)) score += 7;
+          else score += 5;
 
           // Spicy food rate
           const spicy = parseInt(row["Rate how much you like spicy food"]);
