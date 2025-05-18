@@ -155,9 +155,10 @@ const Leaderboard = () => {
 
         sorted.forEach((entry, index) => {
           if (entry.score !== prevScore) {
-            currentRank = index + 1;
+            currentRank = leaderboardArray.length + 1; // ← no skip
             prevScore = entry.score;
           }
+
           leaderboardArray.push({
             Rank: currentRank,
             Pseudo: entry.pseudo,
@@ -173,9 +174,10 @@ const Leaderboard = () => {
               "🍓 Cake Avenger",
               "🍝 Pasta Undertaker",
               "☕ Zen of Flavour"
-            ][currentRank - 1] || "🍴 Foodie (Actual Normie)"
+            ][currentRank - 1] || "🍴 Foodie (Actual Normie)",
           });
         });
+        
         setLeaderboard(leaderboardArray);
       },
     });
