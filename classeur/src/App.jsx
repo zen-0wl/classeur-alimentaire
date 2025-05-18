@@ -21,7 +21,7 @@ function App() {
             }`}
             onClick={() => setActiveTab("results")}
           >
-            🧁 Visual Results
+            Visual Results
           </button>
           <button
             className={`px-5 py-2.5 rounded-full font-semibold transition ${
@@ -36,9 +36,11 @@ function App() {
         </nav>
       </header>
 
-      <div className="flex-1">
+      <div className="flex-1 w-screen overflow-hidden">
         {activeTab === "results" ? (
-          <VisualEmbed />
+          <div className="w-full h-full">
+            <VisualEmbed />
+          </div>
         ) : (
           <main className="bg-white rounded-xl shadow-md p-6 m-6 max-w-5xl mx-auto">
             <Leaderboard />
