@@ -145,11 +145,21 @@ const Leaderboard = () => {
           scores[pseudo] = score;
         });
 
-        const leaderboardArray = Object.entries(scores)
+        const sorted = Object.entries(scores)
           .map(([pseudo, score]) => ({ pseudo, score }))
-          .sort((a, b) => b.score - a.score)
-          .map((entry, index) => ({
-            Rank: index + 1,
+          .sort((a, b) => b.score - a.score);
+
+        const leaderboardArray = [];
+        let currentRank = 1;
+        let prevScore = null;
+
+        sorted.forEach((entry, index) => {
+          if (entry.score !== prevScore) {
+            currentRank = index + 1;
+            prevScore = entry.score;
+          }
+          leaderboardArray.push({
+            Rank: currentRank,
             Pseudo: entry.pseudo,
             Score: entry.score,
             Award: [
@@ -162,10 +172,10 @@ const Leaderboard = () => {
               "🍍 Pineapple Purist",
               "🍓 Cake Avenger",
               "🍝 Pasta Undertaker",
-              "☕ Zen of Flavour",
-            ][index] || "🍴 Foodie (Actual Normie)",
-          }));
-
+              "☕ Zen of Flavour"
+            ][currentRank - 1] || "🍴 Foodie (Actual Normie)"
+          });
+        });
         setLeaderboard(leaderboardArray);
       },
     });
