@@ -86,7 +86,9 @@ const Leaderboard = () => {
           const texture = row["What kind of texture do you enjoy in food?"] || "";
           if (texture.includes("Crunchy") || texture.includes("Crispy")) score += 12;
           else if (texture.includes("Creamy")) score += 10;
-          else score += 6;
+          else if (texture.includes("Chewy")) score += 8;
+          else if (texture.includes("Soft")) score += 6;
+          else score += 5;
 
           // Spicy & Sweet
           const spiceSweet = parseInt(row["If a dish is both spicy and sweet, how likely are you to enjoy it?"]);
