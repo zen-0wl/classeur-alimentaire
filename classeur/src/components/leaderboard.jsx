@@ -150,13 +150,12 @@ const Leaderboard = () => {
           .sort((a, b) => b.score - a.score);
 
         const leaderboardArray = [];
-        let currentRank = 1;
         let prevScore = null;
+        let currentRank = 1;
 
-        sorted.forEach((entry, index) => {
-          if (entry.score !== prevScore) {
-            currentRank = leaderboardArray.length + 1; // ← no skip
-            prevScore = entry.score;
+        sorted.forEach((entry) => {
+          if (prevScore !== null && entry.score !== prevScore) {
+            currentRank++; // increment every time score drops
           }
 
           leaderboardArray.push({
@@ -176,8 +175,10 @@ const Leaderboard = () => {
               "☕ Zen of Flavour"
             ][currentRank - 1] || "🍴 Foodie (Actual Normie)",
           });
+
+          prevScore = entry.score; // update tracker
         });
-        
+
         setLeaderboard(leaderboardArray);
       },
     });
