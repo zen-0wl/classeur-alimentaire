@@ -24,6 +24,35 @@ const Leaderboard = () => {
           // Nitro
           score += row["Nitro user? be honest"] === "Yes onee-sama" ? 10 : row["Nitro user? be honest"] === "N-no" ? 6 : 0;
 
+          // Favorite dish
+          const favDish = (row["What’s your all-time favorite dish?"] || "").toLowerCase();
+          if (favDish.includes("pizza") || favDish.includes("potatoes") || favDish.includes("chicken") || favDish.includes("meat") || favDish.includes("cheese")) {
+            score += 10;
+          } else if (favDish) {
+            score += 5;
+          }
+
+          // Flavor preference
+          const flavor = (row["Do you prefer bold and intense flavors or light and subtle ones?"] || "").toLowerCase();
+          if (flavor.includes("bold") || flavor.includes("intense")) score += 6;
+          if (flavor.includes("light") || flavor.includes("subtle")) score += 4;
+
+          // Favorite snack
+          const snack = (row["Favourite snack?"] || "").toLowerCase();
+          if (["chips", "cheese", "tofu", "chocolate", "nuts"].some(word => snack.includes(word))) {
+            score += 10;
+          } else if (snack) {
+            score += 5;
+          }
+
+          // Indulgent food
+          const indulgent = (row["Which indulgent food do you always say yes to?"] || "").toLowerCase();
+          if (["pizza", "sushi", "peanuts", "chocolate", "ice cream", "poutine", "ramen", "crème brûlée"].some(word => indulgent.includes(word))) {
+            score += 10;
+          } else if (indulgent) {
+            score += 5;
+          }
+
           // Cuisine
           const cuisine = row["Which cuisine do you prefer the most?"];
           if (cuisine === "Vietnamese") score += 10;
