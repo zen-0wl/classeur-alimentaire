@@ -48,6 +48,9 @@ function App() {
         )}
       </div>
 
+      {/* Spacer */}
+      <div style={{ height: "2rem" }} />
+
       <footer className="text-center text-sm text-gray-500 py-4">
         — zen`` · {new Date().getFullYear()}
       </footer>
