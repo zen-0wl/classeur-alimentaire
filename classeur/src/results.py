@@ -11,10 +11,10 @@ df.columns = df.columns.str.strip()
 figs = []
 
 # 1. Nitro
-figs.append(px.pie(df, names="Nitro user? be honest", title="💥 Nitro User Honesty"))
+figs.append(px.pie(df, names="Nitro user? be honest", title="✧˖° Nitro User Honesty"))
 
 # 2. Favorite Cuisine
-figs.append(px.pie(df, names="Which cuisine do you prefer the most?", title="🍱 Favorite Cuisine"))
+figs.append(px.pie(df, names="Which cuisine do you prefer the most?", title="🍱 Favourite Cuisine"))
 
 # 3. Spicy Food Tolerance by Pseudo
 spice_col = "Rate how much you like spicy food"
