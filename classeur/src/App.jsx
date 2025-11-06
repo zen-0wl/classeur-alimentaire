@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import VisualEmbed from "./components/results";
 import Leaderboard from "./components/leaderboard";
+import Memoir from "./components/memoir";
 
 function App() {
   const [activeTab, setActiveTab] = useState("results");
@@ -33,6 +34,16 @@ function App() {
           >
             🏆 Leaderboard
           </button>
+          <button
+            className={`px-5 py-2.5 rounded-full font-semibold transition ${
+              activeTab === "memoir"
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-blue-100"
+            }`}
+            onClick={() => setActiveTab("memoir")}
+          >
+            📖 Memoir
+          </button>
         </nav>
       </header>
 
@@ -41,9 +52,13 @@ function App() {
           <div className="w-full h-full">
             <VisualEmbed />
           </div>
-        ) : (
+        ) : activeTab === "leaderboard" ? (
           <main className="bg-white rounded-xl shadow-md p-6 m-6 max-w-5xl mx-auto">
             <Leaderboard />
+          </main>
+        ) : (
+          <main className="bg-white rounded-xl shadow-md p-6 m-6 max-w-5xl mx-auto">
+            <Memoir />
           </main>
         )}
       </div>
@@ -52,7 +67,7 @@ function App() {
       <div style={{ height: "2rem" }} />
 
       <footer className="text-center text-sm text-gray-500 py-4">
-        — zen`` · {new Date().getFullYear()}
+        — zen` · {new Date().getFullYear()}
       </footer>
     </div>
   );
