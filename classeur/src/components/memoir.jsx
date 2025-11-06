@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Star, Eye } from "lucide-react"; // uses lucide-react icons (already available in your project)
+import { Star, Eye } from "lucide-react"; // make sure this package is installed
 
 const Memoir = () => {
   const [reads, setReads] = useState(0);
   const [rating, setRating] = useState(0);
   const [rated, setRated] = useState(false);
 
-  // Load and increment view count
+  // Increment read count locally
   useEffect(() => {
     const storedReads = localStorage.getItem("memoirReads");
     const newReads = storedReads ? parseInt(storedReads) + 1 : 1;
@@ -14,14 +14,7 @@ const Memoir = () => {
     setReads(newReads);
   }, []);
 
-  // Handle rating click
-  const handleRating = (value) => {
-    setRating(value);
-    setRated(true);
-    localStorage.setItem("memoirRating", value);
-  };
-
-  // Load previous rating
+  // Load existing rating (if any)
   useEffect(() => {
     const savedRating = localStorage.getItem("memoirRating");
     if (savedRating) {
@@ -30,13 +23,20 @@ const Memoir = () => {
     }
   }, []);
 
+  // Handle rating
+  const handleRating = (value) => {
+    setRating(value);
+    setRated(true);
+    localStorage.setItem("memoirRating", value);
+  };
+
   return (
     <div className="flex flex-col items-center w-full min-h-screen bg-gray-50 pt-10 pb-20">
       {/* Introduction */}
       <div className="max-w-4xl text-center mb-6 px-4">
-        <h2 className="text-3xl font-bold text-blue-700 mb-2">📖 LNF Memoir</h2>
+        <h2 className="text-3xl font-bold text-blue-700 mb-2">LNF Mémoire</h2>
         <p className="text-gray-700 text-base leading-relaxed">
-          Bonne lecture avec <strong>“LNF Memoir”</strong> !
+          Bonne lecture !
         </p>
       </div>
 
@@ -63,7 +63,7 @@ const Memoir = () => {
         </div>
       </div>
 
-      {/* Memoir PDF Viewer */}
+      {/* PDF Viewer */}
       <div className="w-11/12 md:w-4/5 h-[120vh] bg-white rounded-xl shadow-lg overflow-hidden border">
         <iframe
           src="/memoir.html"
