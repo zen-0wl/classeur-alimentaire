@@ -2,11 +2,16 @@ import React from "react";
 
 const Memoir = () => {
   return (
-    <div className="flex justify-center items-center w-full h-[80vh] bg-gray-50">
+    <div className="flex justify-center items-center w-full h-screen bg-gray-50">
       <iframe
-        src="/LNF.pdf"
+        src="/memoir.html"
         title="LNF Memoir"
-        className="w-4/5 h-full border-none rounded-xl shadow-lg"
+        style={{
+          width: "100%",
+          height: "100%",
+          border: "none",
+          display: "block"
+        }}
       />
     </div>
   );
