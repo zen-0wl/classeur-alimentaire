@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #1b1b1b;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#4d5fff", "font": {"color": "white"}, "id": "Pata", "label": "Pata", "shape": "dot", "size": 46, "title": "Pata\nQuebec\nConnections: 7\nBridge Score: 0.024"}, {"color": "#ff69b4", "font": {"color": "white"}, "id": "Aquila", "label": "Aquila", "shape": "dot", "size": 34, "title": "Aquila\nNew Zealand\nConnections: 4\nBridge Score: 0.000"}, {"color": "#4d5fff", "font": {"color": "white"}, "id": "James", "label": "James", "shape": "dot", "size": 26, "title": "James\nQuebec\nConnections: 2\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Svet", "label": "Svet", "shape": "dot", "size": 82, "title": "Svet\nFrance\nConnections: 16\nBridge Score: 0.322"}, {"color": "#ff4d4d", "font": {"color": "white"}, "id": "Nia", "label": "Nia", "shape": "dot", "size": 30, "title": "Nia\nCanada\nConnections: 3\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Hex", "label": "Hex", "shape": "dot", "size": 42, "title": "Hex\nFrance\nConnections: 6\nBridge Score: 0.011"}, {"color": "#ff4dac", "font": {"color": "white"}, "id": "Celsia", "label": "Celsia", "shape": "dot", "size": 90, "title": "Celsia\nUSA\nConnections: 18\nBridge Score: 0.421"}, {"color": "#ff4d4d", "font": {"color": "white"}, "id": "Ruy", "label": "Ruy", "shape": "dot", "size": 30, "title": "Ruy\nCanada\nConnections: 3\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Damocles", "label": "Damocles", "shape": "dot", "size": 30, "title": "Damocles\nFrance\nConnections: 3\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Roto", "label": "Roto", "shape": "dot", "size": 22, "title": "Roto\nFrance\nConnections: 1\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Shae", "label": "Shae", "shape": "dot", "size": 22, "title": "Shae\nFrance\nConnections: 1\nBridge Score: 0.000"}, {"color": "#ff4d4d", "font": {"color": "white"}, "id": "Albatros", "label": "Albatros", "shape": "dot", "size": 26, "title": "Albatros\nCanada\nConnections: 2\nBridge Score: 0.000"}, {"color": "#c0c0c0", "font": {"color": "white"}, "id": "Dimirah", "label": "Dimirah", "shape": "dot", "size": 38, "title": "Dimirah\nUnknown\nConnections: 5\nBridge Score: 0.060"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Andy", "label": "Andy", "shape": "dot", "size": 26, "title": "Andy\nFrance\nConnections: 2\nBridge Score: 0.000"}, {"color": "#ffd24d", "font": {"color": "white"}, "id": "G-Admin", "label": "G-Admin", "shape": "dot", "size": 22, "title": "G-Admin\nGermany\nConnections: 1\nBridge Score: 0.000"}, {"color": "#ff4dac", "font": {"color": "white"}, "id": "Donut", "label": "Donut", "shape": "dot", "size": 22, "title": "Donut\nUSA\nConnections: 1\nBridge Score: 0.000"}, {"color": "#00c851", "font": {"color": "white"}, "id": "River", "label": "River", "shape": "dot", "size": 22, "title": "River\nLuxembourg\nConnections: 1\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Ned", "label": "Ned", "shape": "dot", "size": 22, "title": "Ned\nFrance\nConnections: 1\nBridge Score: 0.000"}, {"color": "#c0c0c0", "font": {"color": "white"}, "id": "Pile", "label": "Pile", "shape": "dot", "size": 22, "title": "Pile\nUnknown\nConnections: 1\nBridge Score: 0.000"}, {"color": "#ff4dac", "font": {"color": "white"}, "id": "Limou", "label": "Limou", "shape": "dot", "size": 22, "title": "Limou\nUSA\nConnections: 1\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Darian", "label": "Darian", "shape": "dot", "size": 22, "title": "Darian\nFrance\nConnections: 1\nBridge Score: 0.000"}, {"color": "#b266ff", "font": {"color": "white"}, "id": "Cokolita", "label": "Cokolita", "shape": "dot", "size": 38, "title": "Cokolita\nSerbia\nConnections: 5\nBridge Score: 0.016"}, {"color": "#b266ff", "font": {"color": "white"}, "id": "Mari", "label": "Mari", "shape": "dot", "size": 26, "title": "Mari\nSerbia\nConnections: 2\nBridge Score: 0.000"}, {"color": "#00b7c8", "font": {"color": "white"}, "id": "Mylene", "label": "Mylene", "shape": "dot", "size": 22, "title": "Mylene\nMontenegro\nConnections: 1\nBridge Score: 0.000"}, {"color": "#4dfff3", "font": {"color": "white"}, "id": "Vyn", "label": "Vyn", "shape": "dot", "size": 22, "title": "Vyn\nPhilippines\nConnections: 1\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Soro", "label": "Soro", "shape": "dot", "size": 22, "title": "Soro\nFrance\nConnections: 1\nBridge Score: 0.000"}, {"color": "#ff944d", "font": {"color": "white"}, "id": "Wemily", "label": "Wemily", "shape": "dot", "size": 22, "title": "Wemily\nSwitzerland\nConnections: 1\nBridge Score: 0.000"}, {"color": "#4dfff3", "font": {"color": "white"}, "id": "Neil", "label": "Neil", "shape": "dot", "size": 22, "title": "Neil\nPhilippines\nConnections: 1\nBridge Score: 0.000"}, {"color": "#4da6ff", "font": {"color": "white"}, "id": "Hassan", "label": "Hassan", "shape": "dot", "size": 22, "title": "Hassan\nFrance\nConnections: 1\nBridge Score: 0.000"}, {"color": "#ff4d4d", "font": {"color": "white"}, "id": "Existence", "label": "Existence", "shape": "dot", "size": 22, "title": "Existence\nCanada\nConnections: 1\nBridge Score: 0.000"}]);
+                  edges = new vis.DataSet([{"color": "#999999", "from": "Pata", "title": "Met 1 time(s)", "to": "Aquila", "value": 1, "width": 2}, {"color": "#999999", "from": "Pata", "title": "Met 1 time(s)", "to": "James", "value": 1, "width": 2}, {"color": "#999999", "from": "Pata", "title": "Met 2 time(s)", "to": "Svet", "value": 2, "width": 3}, {"color": "#999999", "from": "Pata", "title": "Met 1 time(s)", "to": "Nia", "value": 1, "width": 2}, {"color": "#999999", "from": "Pata", "title": "Met 2 time(s)", "to": "Hex", "value": 2, "width": 3}, {"color": "#999999", "from": "Pata", "title": "Met 2 time(s)", "to": "Celsia", "value": 2, "width": 3}, {"color": "red", "from": "Pata", "title": "\u2764\ufe0f Met trillion times", "to": "Ruy", "value": 5, "width": 5}, {"color": "#999999", "from": "Aquila", "title": "Met 1 time(s)", "to": "Celsia", "value": 1, "width": 2}, {"color": "red", "from": "Aquila", "title": "\u2764\ufe0f Met trillion times", "to": "Hex", "value": 5, "width": 5}, {"color": "#999999", "from": "Aquila", "title": "Met 1 time(s)", "to": "Svet", "value": 1, "width": 2}, {"color": "#999999", "from": "James", "title": "Met 1 time(s)", "to": "Svet", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 2 time(s)", "to": "Celsia", "value": 2, "width": 3}, {"color": "red", "from": "Svet", "title": "\u2764\ufe0f Met trillion times", "to": "Cokolita", "value": 6, "width": 5}, {"color": "#999999", "from": "Svet", "title": "Met 2 time(s)", "to": "Hex", "value": 2, "width": 3}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Wemily", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Neil", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Hassan", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Andy", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Albatros", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Nia", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Existence", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Dimirah", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Mari", "value": 1, "width": 2}, {"color": "#999999", "from": "Svet", "title": "Met 1 time(s)", "to": "Damocles", "value": 1, "width": 2}, {"color": "#999999", "from": "Nia", "title": "Met 1 time(s)", "to": "Celsia", "value": 1, "width": 2}, {"color": "#999999", "from": "Hex", "title": "Met 2 time(s)", "to": "Celsia", "value": 2, "width": 3}, {"color": "#999999", "from": "Hex", "title": "Met 1 time(s)", "to": "Ruy", "value": 1, "width": 2}, {"color": "#999999", "from": "Hex", "title": "Met 1 time(s)", "to": "Dimirah", "value": 1, "width": 2}, {"color": "red", "from": "Celsia", "title": "\u2764\ufe0f Met trillion times", "to": "Damocles", "value": 5, "width": 5}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Ruy", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Roto", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Shae", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Albatros", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Dimirah", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Andy", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "G-Admin", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Donut", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "River", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Ned", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Pile", "value": 1, "width": 2}, {"color": "#999999", "from": "Celsia", "title": "Met 1 time(s)", "to": "Cokolita", "value": 1, "width": 2}, {"color": "#999999", "from": "Damocles", "title": "Met 1 time(s)", "to": "Cokolita", "value": 1, "width": 2}, {"color": "#999999", "from": "Dimirah", "title": "Met 1 time(s)", "to": "Cokolita", "value": 1, "width": 2}, {"color": "#999999", "from": "Dimirah", "title": "Met 1 time(s)", "to": "Mylene", "value": 1, "width": 2}, {"color": "#999999", "from": "Limou", "title": "Met 1 time(s)", "to": "Darian", "value": 1, "width": 2}, {"color": "#999999", "from": "Cokolita", "title": "Met 1 time(s)", "to": "Mari", "value": 1, "width": 2}, {"color": "red", "from": "Vyn", "title": "\u2764\ufe0f Met trillion times", "to": "Soro", "value": 5, "width": 5}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"borderWidth": 2, "font": {"size": 18}}, "edges": {"smooth": {"enabled": true, "type": "dynamic"}}, "physics": {"forceAtlas2Based": {"gravitationalConstant": -90, "springLength": 170, "springConstant": 0.02}, "solver": "forceAtlas2Based", "minVelocity": 0.75}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
