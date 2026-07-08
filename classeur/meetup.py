@@ -137,6 +137,17 @@ host_meetups = {
         "Ruy",
         "Dimirah",
     ],
+    
+    "Aquila": [
+        "Hex",
+        "Svet",
+        "Celsia",   
+        "Pata",
+        "Ruy",
+        "James",
+        "Existence",
+        "Dimirah",
+    ],
 
     "Svet": [
 
@@ -165,6 +176,12 @@ host_meetups = {
         "Celsia",     
         "Damocles",
     ],
+    
+    "Existence": [
+        "Aquila",
+        "James",
+        "Pata",  
+    ] 
 }
 
 # ============================================================
@@ -270,7 +287,7 @@ for u, v, data in G.edges(data=True):
             value=weight + 4,
             color="red",
             width=5,
-            title=f"❤️ Met trillion times",
+            title=f"❤️ En couple",
         )
 
     else:
