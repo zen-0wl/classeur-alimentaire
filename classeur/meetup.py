@@ -52,6 +52,8 @@ people = {
     "Soro": "France",
 
     "Mylene": "Montenegro",
+    
+    "4ana": "Quebec",
 }
 
 # ============================================================
@@ -67,7 +69,7 @@ country_colors = {
     "Germany": "#ffd24d",
     "Switzerland": "#ff944d",
     "Philippines": "#4dfff3",
-    "New Zealand": "#ff69b4",
+    "New Zealand": "#ddb383",
     "Luxembourg": "#00c851",
     "Montenegro": "#00b7c8",
     "Unknown": "#c0c0c0",
@@ -183,6 +185,10 @@ host_meetups = {
     "Donut": [
         "Celsia",
         "Svet",
+    ],
+    
+    "4ana": [
+        "Albatros",
     ],
     
     "Existence": [
