@@ -33,7 +33,7 @@ people = {
     "Neil": "Philippines",
     "Hassan": "France",
 
-    "G-Admin": "Germany",
+    "Li": "Germany",
 
     "Wemily": "Switzerland",
 
@@ -105,7 +105,7 @@ host_meetups = {
         "Albatros",
         "Dimirah",
         "Andy",
-        "G-Admin",
+        "Li",
         "Donut",
         "River",
         "Ned",
@@ -205,7 +205,12 @@ host_meetups = {
         "Andy", 
         "Dimirah",
         "Shaevelgo",
-    ] 
+    ], 
+    
+    "Shaevelgo": [
+        "Celsia",
+        "Li",
+    ]
 }
 
 # ============================================================
