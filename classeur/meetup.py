@@ -175,6 +175,14 @@ host_meetups = {
 
         "Celsia",     
         "Damocles",
+        
+        "Donut",
+        "Pétales",
+    ],
+    
+    "Donut": [
+        "Celsia",
+        "Svet",
     ],
     
     "Existence": [
