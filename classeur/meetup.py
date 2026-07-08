@@ -53,6 +53,7 @@ people = {
 
     "Vyn": "Philippines",
     "Soro": "France",
+    "Svechta": "Serbia",
 
     "Mylene": "Montenegro",
     
@@ -125,6 +126,14 @@ host_meetups = {
         "Svet",
         "Celsia",
         "Dimirah",
+        "Damocles",
+        "Svechta",
+    ],
+    
+    "Mari": [
+        "Cokolita",
+        "Svet",
+        "Svechta",
     ],
 
     "Mylene": [
@@ -185,6 +194,8 @@ host_meetups = {
         
         "Donut",
         "Pétales",
+        
+        "Svechta",
     ],
     
     "Donut": [
