@@ -45,7 +45,7 @@ people = {
     "Pile": "Unknown",
     "Ned": "France",
     "Roto": "France",
-    "Shae": "France",
+    "Shaevelgo": "France",
     "Dimirah": "Unknown",
     "Edmund": "France",
 
@@ -101,7 +101,7 @@ host_meetups = {
         "Ruy",
         "Pata",
         "Roto",
-        "Shae",
+        "Shaevelgo",
         "Albatros",
         "Dimirah",
         "Andy",
@@ -120,7 +120,6 @@ host_meetups = {
     "Cokolita": [
         "Mari",
         "Svet",
-        "Damocles",
         "Celsia",
         "Dimirah",
     ],
@@ -179,6 +178,7 @@ host_meetups = {
 
         "Celsia",     
         "Damocles",
+        "Shaevelgo",
         
         "Donut",
         "Pétales",
@@ -197,6 +197,14 @@ host_meetups = {
         "Aquila",
         "James",
         "Pata",  
+    ],
+     
+    "Damocles": [
+        "Celsia",
+        "Svet",
+        "Andy", 
+        "Dimirah",
+        "Shaevelgo",
     ] 
 }
 
