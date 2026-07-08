@@ -47,6 +47,7 @@ people = {
     "Roto": "France",
     "Shae": "France",
     "Dimirah": "Unknown",
+    "Edmund": "France",
 
     "Vyn": "Philippines",
     "Soro": "France",
@@ -109,6 +110,7 @@ host_meetups = {
         "River",
         "Ned",
         "Pile",
+        "Edmund",
     ],
 
     "Limou": [
