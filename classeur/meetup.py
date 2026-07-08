@@ -39,6 +39,7 @@ people = {
 
     "Albatros": "Canada",
     "Existence": "Canada",
+    "Enraptured": "Canada",
 
     "River": "Luxembourg",
     "Donut": "USA",
@@ -111,6 +112,7 @@ host_meetups = {
         "Ned",
         "Pile",
         "Edmund",
+        "Enraptured",
     ],
 
     "Limou": [
@@ -166,6 +168,7 @@ host_meetups = {
         "Aquila",
 
         "Existence",
+        "Enraptured",
 
         "Dimirah",
 
@@ -197,6 +200,12 @@ host_meetups = {
         "Aquila",
         "James",
         "Pata",  
+    ],
+    
+    "Enraptured": [
+        "Svet",
+        "Celsia",
+        "Nia",
     ],
      
     "Damocles": [
