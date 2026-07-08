@@ -17,6 +17,7 @@ people = {
     "Ruy": "Canada",
     "Svet": "France",
     "Celsia": "USA",
+    "Ro": "USA",
     "Aquila": "New Zealand",
     "Hex": "France",
     "James": "Quebec",
@@ -218,7 +219,35 @@ host_meetups = {
     "Shaevelgo": [
         "Celsia",
         "Li",
-    ]
+    ],
+    
+    "River": [
+        "Celsia",
+        "Ned",
+        "Roto",
+    ],
+    
+    "Ro": [
+        "Celsia",
+        "Damocles",
+        "Svet",
+        "Dimirah",
+    ],
+    
+    "Wemily": [
+        "Neil",
+        "Hassan",
+    ],
+    
+    "Neil": [
+        "Wemily",
+        "Hassan",
+    ],
+    
+    "Hassan": [
+        "Wemily",
+        "Neil",
+    ],
 }
 
 # ============================================================
@@ -332,10 +361,9 @@ for u, v, data in G.edges(data=True):
         net.add_edge(
             u,
             v,
-            value=weight,
             color="#999999",
-            width=1 + weight,
-            title=f"Met {weight} time(s)"
+            width=2,
+            title="💛 Met",
         )
 
 # ============================================================
