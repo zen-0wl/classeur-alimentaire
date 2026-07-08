@@ -168,7 +168,6 @@ host_meetups = {
         "Aquila",
 
         "Existence",
-        "Enraptured",
 
         "Dimirah",
 
@@ -203,9 +202,9 @@ host_meetups = {
     ],
     
     "Enraptured": [
-        "Svet",
         "Celsia",
         "Nia",
+        "Albatros",
     ],
      
     "Damocles": [
