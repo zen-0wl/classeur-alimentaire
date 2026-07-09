@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LNF Edition</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Consolas, monospace;
+    color:white;
+    overflow:hidden;
+
+    /* Blocky "grass & dirt" background */
+    background:
+    linear-gradient(90deg,#567d46 50%,#4c703d 50%),
+    linear-gradient(#7a5230 50%,#6a4628 50%);
+    background-size:40px 40px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+#screen{
+    width:900px;
+    max-width:90%;
+    text-align:center;
+}
+
+h1{
+    font-size:64px;
+    margin-bottom:10px;
+}
+
+#splash{
+    color:gold;
+    margin-bottom:40px;
+    animation:bounce 1s infinite alternate;
+}
+
+button{
+    width:320px;
+    padding:12px;
+    margin:8px;
+    font-size:22px;
+    cursor:pointer;
+
+    background:#8b8b8b;
+    border:3px solid #444;
+    color:white;
+}
+
+button:hover{
+    background:#b3b3b3;
+}
+
+pre{
+    text-align:left;
+    white-space:pre-wrap;
+    font-size:18px;
+}
+
+@keyframes bounce{
+    from{transform:rotate(-5deg);}
+    to{transform:rotate(5deg);}
+}
+</style>
+
+</head>
+<body>
+
+<div id="screen">
+
+<h1>MINECRAFT</h1>
+
+<div id="splash">"Now with 99% more authenticity!"</div>
+
+<div id="menu">
+
+<button onclick="playClick(); singleplayer()">Singleplayer</button><br>
+
+<button onclick="playClick(); multiplayer()">Multiplayer</button><br>
+
+<button onclick="playClick(); crash()">Options...</button><br>
+
+<button onclick="playClick(); crash()">Quit Game</button>
+
+</div>
+
+</div>
+
+<audio id="bgm" loop>
+    <source src="audio/menu.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="click">
+    <source src="audio/click.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="crashSound">
+    <source src="audio/crash.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const screen=document.getElementById("screen");
+const bgm = document.getElementById("bgm");
+const clickSound = document.getElementById("click");
+const crashSound = document.getElementById("crashSound");
+
+let musicStarted = false;
+
+function playClick(){
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    if(!musicStarted){
+
+        bgm.play();
+        musicStarted = true;
+
+    }
+
+}
+
+function wait(ms){
+    return new Promise(r=>setTimeout(r,ms));
+}
+
+async function singleplayer(){
+
+screen.innerHTML=`
+<h2>Generating World...</h2>
+<br>
+<pre id="load">
+[░░░░░░░░░░░░░░░░░░]
+0%
+</pre>
+`;
+
+let load=document.getElementById("load");
+
+for(let i=0;i<=20;i++){
+
+await wait(120);
+
+let bar="█".repeat(i)+"░".repeat(20-i);
+
+load.innerHTML=`[${bar}]
+${i*5}%`;
+
+}
+
+await wait(700);
+
+screen.innerHTML="<pre id='chat'></pre>";
+
+const chat=document.getElementById("chat");
+
+const messages=[
+
+"[LNF] Colin joined the game",
+
+"Celsia fell from a high place",
+
+"Edmun tried to swim in lava",
+
+"Colin was slain by Wilem",
+
+"Ammouma discovered the meaning of lag",
+
+"LNF has made the advancement [Professional Cheeser]",
+
+"Saving world..."
+
+];
+
+for(let msg of messages){
+
+chat.innerHTML+=msg+"\n";
+
+await wait(1200);
+
+}
+
+chat.innerHTML += "\nSaving world...\n";
+
+await wait(2000);
+
+chat.innerHTML += "Disconnecting...\n";
+
+await wait(1500);
+
+crash();
+
+}
+
+async function multiplayer(){
+
+screen.innerHTML=`
+<pre id="members">
+Connecting to server...
+
+LNF SMP
+Players: 7 / 10
+
+Loading community...
+</pre>
+`;
+
+await wait(2000);
+
+screen.innerHTML=`
+<pre>
+============================
+
+      LNF COMMUNITY
+
+============================
+
+Colin
+"The Tree Puncher"
+
+----------------------------
+
+Celsia
+"Gravity Tester"
+
+----------------------------
+
+Danla
+"Diamond Tax Collector"
+
+----------------------------
+
+Zen
+"AFK since forever"
+
+----------------------------
+
+Wilem
+"Definitely not cheating"
+
+============================
+
+Enjoy the community page :)
+
+(Voiding in 10 seconds...)
+</pre>
+`;
+
+setTimeout(crash,10000);
+
+}
+
+function crash(){
+
+    bgm.pause();
+
+    bgm.currentTime = 0;
+
+    crashSound.currentTime = 0;
+    crashSound.play();
+
+    screen.innerHTML=`
+<pre id="crashScreen" style="cursor:pointer;">
+
+---- Minecraft Crash Report ----
+
+Time: Just Now
+
+Description:
+
+Unexpected Exception
+
+java.lang.NullPointerException
+
+Reason:
+Too much trolling.
+
+Stacktrace:
+
+at lnf.community.render()
+
+at minecraft.client.MainMenu()
+
+Error Code:
+
+LNF-69420
+
+:)
+
+Click anywhere to return.
+
+</pre>
+`;
+
+    document.getElementById("crashScreen").onclick = restart;
+
+}
+
+function restart(){
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>
