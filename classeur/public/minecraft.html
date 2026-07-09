@@ -116,21 +116,29 @@ const bgm = document.getElementById("bgm");
 const clickSound = document.getElementById("click");
 const crashSound = document.getElementById("crashSound");
 
-let musicStarted = false;
-
 function playClick(){
 
     clickSound.currentTime = 0;
-    clickSound.play();
-
-    if(!musicStarted){
-
-        bgm.play();
-        musicStarted = true;
-
-    }
+    clickSound.play().catch(()=>{});
 
 }
+
+let musicStarted = false;
+
+document.addEventListener("pointerdown", () => {
+
+    if (musicStarted) return;
+
+    musicStarted = true;
+
+    bgm.volume = 0.35;
+    bgm.loop = true;
+
+    bgm.play()
+        .then(() => console.log("Menu music started"))
+        .catch(err => console.error("Menu music failed:", err));
+
+}, { once: true });
 
 function wait(ms){
     return new Promise(r=>setTimeout(r,ms));
@@ -178,9 +186,7 @@ const messages=[
 
 "Ammouma discovered the meaning of lag",
 
-"LNF has made the advancement [Professional Cheeser]",
-
-"Saving world..."
+"LNF has made the advancement [Professional Chaser]",
 
 ];
 
@@ -192,13 +198,31 @@ await wait(1200);
 
 }
 
+async function fadeOutMusic(){
+
+    while(bgm.volume > 0.02){
+
+        bgm.volume -= 0.02;
+
+        await wait(100);
+
+    }
+
+    bgm.pause();
+    bgm.currentTime = 0;
+    bgm.volume = 0.35;
+
+}
+
 chat.innerHTML += "\nSaving world...\n";
 
 await wait(2000);
 
 chat.innerHTML += "Disconnecting...\n";
 
-await wait(1500);
+await wait(1000);
+
+await fadeOutMusic();
 
 crash();
 
@@ -223,53 +247,57 @@ screen.innerHTML=`
 <pre>
 ============================
 
-      LNF COMMUNITY
+      LNF COMMUNAUTÉ
 
 ============================
 
 Colin
-"The Tree Puncher"
+"Le cogneur d'arbres"
 
 ----------------------------
 
 Celsia
-"Gravity Tester"
+"Testeur de gravité"
 
 ----------------------------
 
 Danla
-"Diamond Tax Collector"
+"Percepteur d'impôts sur les diamants"
 
 ----------------------------
 
-Zen
-"AFK since forever"
+Damocles
+"AFK depuis toujours"
 
 ----------------------------
 
 Wilem
-"Definitely not cheating"
+"Gobelin pirate"
 
 ============================
 
-Enjoy the community page :)
+Profitez de la page de la communauté (｡•̀ᴗ-)
 
-(Voiding in 10 seconds...)
+(Voiding in 7 seconds...)
 </pre>
 `;
 
-setTimeout(crash,10000);
+setTimeout(crash,7000);
 
 }
 
 function crash(){
 
-    bgm.pause();
+    if(!bgm.paused){
 
-    bgm.currentTime = 0;
+        bgm.pause();
+        bgm.currentTime = 0;
+        bgm.volume = 0.35;
+
+    }
 
     crashSound.currentTime = 0;
-    crashSound.play();
+    crashSound.play().catch(()=>{});
 
     screen.innerHTML=`
 <pre id="crashScreen" style="cursor:pointer;">
