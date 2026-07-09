@@ -14,7 +14,7 @@ def normalize(name):
 
 people = {
     "Pata": "Quebec",
-    "Ruy": "Canada",
+    "Ruy": "Vietnam",
     "Svet": "France",
     "Celsia": "USA",
     "Ro": "USA",
@@ -76,6 +76,7 @@ country_colors = {
     "New Zealand": "#ddb383",
     "Luxembourg": "#00c851",
     "Montenegro": "#00b7c8",
+    "Vietnam": "#ffae2b",
     "Unknown": "#c0c0c0",
 }
 
@@ -93,6 +94,17 @@ host_meetups = {
         "Hex",
         "Celsia",
         "Ruy",
+        "Andromeda",
+    ],
+    
+    "Ruy": [
+        "Andromeda",
+    ],
+    
+    "Andromeda": [
+        "Pata",
+        "Aquila",
+        "Hex",
     ],
 
     "Celsia": [
