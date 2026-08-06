@@ -131,6 +131,8 @@ host_meetups = {
 
     "Limou": [
         "Darian",
+        "Celsia",
+        "Damocles",
     ],
 
     "Cokolita": [
@@ -248,6 +250,9 @@ host_meetups = {
         "Celsia",
         "Ned",
         "Roto",
+        "Cokolita",
+        "Dimirah",
+        "Svet",
     ],
     
     "Ro": [
