@@ -177,6 +177,10 @@ host_meetups = {
         "James",
         "Existence",
         "Dimirah",
+        "Donut",
+        "Enraptured",
+        "Albatros",
+        "Nia",
     ],
 
     "Svet": [
