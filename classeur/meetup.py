@@ -142,6 +142,7 @@ host_meetups = {
         "Dimirah",
         "Damocles",
         "Svechta",
+        "River",
     ],
     
     "Mari": [
@@ -210,6 +211,7 @@ host_meetups = {
         "Pétales",
         
         "Svechta",
+        "River",
     ],
     
     "Donut": [
