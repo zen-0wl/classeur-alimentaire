@@ -13,71 +13,67 @@ def normalize(name):
 # ============================================================
 
 people = {
-    "Pata": "Quebec",
-    "Ruy": "Vietnam",
+    "Pata": "Québec",
+    "Ruy": "Việt Nam",
     "Svet": "France",
     "Celsia": "USA",
     "Ro": "USA",
-    "Aquila": "New Zealand",
+    "Aquila": "Aotearoa",
     "Hex": "France",
-    "James": "Quebec",
+    "James": "Québec",
     "Nia": "Canada",
 
     "Damocles": "France",
-    "Cokolita": "Serbia",
-    "Mari": "Serbia",
+    "Cokolita": "Србија",
+    "Mari": "Србија",
 
     "Limou": "USA",
     "Darian": "France",
 
     "Andy": "France",
-    "Neil": "Philippines",
+    "Neil": "Pilipinas",
     "Hassan": "France",
 
-    "Li": "Germany",
+    "Li": "Deutschland",
 
-    "Wemily": "Switzerland",
+    "Wemily": "Schwiiz",
 
     "Albatros": "Canada",
     "Existence": "Canada",
     "Enraptured": "Canada",
 
-    "River": "Luxembourg",
+    "River": "Lëtzebuerg",
     "Donut": "USA",
-    "Pile": "Unknown",
+    "Pile": "Okänd",
     "Ned": "France",
     "Roto": "France",
     "Shaevelgo": "France",
-    "Dimirah": "Unknown",
+    "Dimirah": "Okänd",
     "Edmund": "France",
 
-    "Vyn": "Philippines",
+    "Vyn": "Pilipinas",
     "Soro": "France",
-    "Svechta": "Serbia",
+    "Svechta": "Србија",
 
-    "Mylene": "Montenegro",
-    
-    "4ana": "Quebec",
+    "Mylene": "Црна Гора",
+    "4ana": "Québec",
 }
 
-# ============================================================
-# COUNTRY COLOURS
-# ============================================================
 
 country_colors = {
     "Canada": "#ff4d4d",
-    "Quebec": "#4d5fff",
+    "Québec": "#4d5fff",
     "France": "#4da6ff",
     "USA": "#ff4dac",
-    "Serbia": "#b266ff",
-    "Germany": "#ffd24d",
-    "Switzerland": "#ff944d",
-    "Philippines": "#4dfff3",
-    "New Zealand": "#ddb383",
-    "Luxembourg": "#00c851",
-    "Montenegro": "#00b7c8",
-    "Vietnam": "#ffae2b",
-    "Unknown": "#c0c0c0",
+    "Србија": "#b266ff",
+    "Deutschland": "#ffd24d",
+    "Schwiiz": "#ff944d",
+    "Pilipinas": "#4dfff3",
+    "Aotearoa": "#ddb383",
+    "Lëtzebuerg": "#00c851",
+    "Црна Гора": "#00b7c8",
+    "Việt Nam": "#ffae2b",
+    "Okänd": "#c0c0c0",
 }
 
 # ============================================================
@@ -285,9 +281,7 @@ host_meetups = {
     ],
 }
 
-# ============================================================
 # COUPLES
-# ============================================================
 
 couples = {
     ("Pata", "Ruy"),
@@ -297,9 +291,14 @@ couples = {
     ("Vyn", "Soro"),
 }
 
-# ============================================================
+# FAMILY
+
+family = {
+    ("Celsia", "Ro"),
+    ("Damocles", "Ro"),
+}
+
 # BUILD GRAPH
-# ============================================================
 
 G = nx.Graph()
 
@@ -320,16 +319,12 @@ for host, guests in host_meetups.items():
         else:
             G.add_edge(host, guest, weight=1)
 
-# ============================================================
 # NETWORK STATISTICS
-# ============================================================
 
 degree = dict(G.degree())
 betweenness = nx.betweenness_centrality(G)
 
-# ============================================================
 # CREATE NETWORK
-# ============================================================
 
 net = Network(
     height="900px",
@@ -340,13 +335,11 @@ net = Network(
 
 net.force_atlas_2based()
 
-# ============================================================
 # ADD NODES
-# ============================================================
 
 for node in G.nodes():
 
-    country = people.get(node, "Unknown")
+    country = people.get(node, "Okänd")
 
     colour = country_colors.get(country, "#c0c0c0")
 
@@ -367,9 +360,7 @@ for node in G.nodes():
         size=size,
     )
 
-# ============================================================
 # ADD EDGES
-# ============================================================
 
 for u, v, data in G.edges(data=True):
 
@@ -378,6 +369,11 @@ for u, v, data in G.edges(data=True):
     is_couple = (
         (u, v) in couples or
         (v, u) in couples
+    )
+    
+    is_family = (
+        (u, v) in family or
+        (v, u) in family
     )
 
     if is_couple:
@@ -390,6 +386,17 @@ for u, v, data in G.edges(data=True):
             width=5,
             title=f"❤️ En couple",
         )
+    
+    elif is_family:
+
+        net.add_edge(
+            u,
+            v,
+            value=weight + 2,
+            color="#fe9d43",
+            width=4,
+            title="🧡 Famille",
+        )
 
     else:
 
@@ -398,12 +405,10 @@ for u, v, data in G.edges(data=True):
             v,
             color="#999999",
             width=2,
-            title="💛 Met",
+            title="🩵 Rencontré",
         )
 
-# ============================================================
 # PHYSICS
-# ============================================================
 
 net.set_options("""
 {
@@ -439,9 +444,7 @@ net.set_options("""
 }
 """)
 
-# ============================================================
 # SAVE
-# ============================================================
 
 net.write_html(
     "meetups.html",
@@ -451,9 +454,7 @@ net.write_html(
 
 print("\nSaved to meetups.html")
 
-# ============================================================
 # STATISTICS
-# ============================================================
 
 print("\n==============================")
 print("Most Connected Members")
