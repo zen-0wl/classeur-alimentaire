@@ -15,6 +15,7 @@ def normalize(name):
 people = {
     "Pata": "Québec",
     "Ruy": "Việt Nam",
+    "Andromeda": "Canada",
     "Svet": "France",
     "Celsia": "USA",
     "Ro": "USA",
@@ -48,7 +49,7 @@ people = {
     "Ned": "France",
     "Roto": "France",
     "Shaevelgo": "France",
-    "Dimirah": "Okänd",
+    "Dimirah": "France",
     "Edmund": "France",
 
     "Vyn": "Pilipinas",
@@ -289,6 +290,7 @@ couples = {
     ("Damocles", "Celsia"),
     ("Hex", "Aquila"),
     ("Vyn", "Soro"),
+    ("Limou", "Darian"),
 }
 
 # FAMILY
